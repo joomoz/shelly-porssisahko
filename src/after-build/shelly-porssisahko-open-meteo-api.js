@@ -9,8 +9,8 @@
  * 
  * Sen jälkeen muokkaa alempaa toimintalogiikka haluamaksesi
  */
-let LATITUDE = "61.4991";
-let LONGITUDE = "23.7871";
+let LATITUDE = "60.5";
+let LONGITUDE = "22.5";
 
 //Mitä ohjausta hienosäädetään (0 = ohjaus #1, 1 = ohjaus #2 jne.)
 let INSTANCE = 0;
@@ -126,18 +126,23 @@ function USER_OVERRIDE(inst, cmd, callback) {
             //Muutetaan päivän alhaisimman lämpötilan perusteella lämmitystuntien määrää ja minuutteja
             if (tempData.min <= -15) {
               //Vuorokauden aikana alimmillaan alle -15 °C
-              hours = 8;
+              hours = 20;
               minutes = 60;
 
             } else if (tempData.min <= -10) {
               //Vuorokauden aikana alimmillaan -15...-10 °C
-              hours = 7;
-              minutes = 45;
+              hours = 18;
+              minutes = 60;
 
             } else if (tempData.min <= -5) {
               //Vuorokauden aikana alimmillaan -10...-5 °C
-              hours = 6;
-              minutes = 45;
+              hours = 16;
+              minutes = 60;
+
+            } else if (tempData.min <= 0) {
+              //Vuorokauden aikana alimmillaan alle 0 °C
+              hours = 15;
+              minutes = 60;
 
             } else {
               //Ei tehdä mitään --> käytetään käyttöliittymän asetuksia
